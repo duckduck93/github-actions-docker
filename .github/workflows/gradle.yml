@@ -55,6 +55,5 @@ jobs:
         port: ${{secrets.PORT}}
         username: ${{secrets.USERNAME}}
         password: ${{secrets.PASSWORD}}
-        script: cd ${{secrets.TARGET_PATH}} && docker build --tag yas-backend:0.1 .
-    
-    
+        script: cd ${{secrets.TARGET_PATH}} && docker build --tag yas-backend:0.1 . && docker run -p 8080:8080/tcp yas-backend:0.1
+  
