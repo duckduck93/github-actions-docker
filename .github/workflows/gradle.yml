@@ -45,6 +45,16 @@ jobs:
         port: ${{secrets.PORT}}
         username: ${{secrets.USERNAME}}
         password: ${{secrets.PASSWORD}}
-        SOURCE: "build/libs"
+        SOURCE: "Dockerfile,build/libs"
         TARGET: ${{secrets.TARGET_PATH}}
         
+    - name: DockerBuild In Server
+      uses: appleboy/scp-action@master
+      with:        
+        host: ${{secrets.HOST}}
+        port: ${{secrets.PORT}}
+        username: ${{secrets.USERNAME}}
+        password: ${{secrets.PASSWORD}}
+        script: cd ${{secrets.TARGET_PATH}} && docker build --tag yas-backend:0.1 .
+    
+    
