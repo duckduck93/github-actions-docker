@@ -37,12 +37,6 @@ jobs:
         
     - name: Make Directory
       run: mkdir deploy
-      
-    - name: Copy Jar to Directory
-      run: cp ./build/libs/*.jar ./deploy
-      
-    - name: Make Zip
-      run: zip -r -qq -j ./jars.zip ./deploy
 
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
@@ -50,5 +44,6 @@ jobs:
         REMOTE_HOST: ${{secrets.REMOTE_HOST}}
         REMOTE_USER: ${{secrets.REMOTE_USER}}
         SSH_PRIVATE_KEY: ${{secrets.SSH_KEY}}
-        SOURCE: "jars.zip"
-        TARGET: $${{secrets.REMOTE_TARGET_PATH}}
+        SOURCE: "build/libs"
+        TARGET: ${{secrets.REMOTE_TARGET_PATH}}
+        
